@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Quantrix India Private Limited</title>
+  <meta name="description" content="Browse Quantrix India's complete industrial automation product catalogue — motion controllers, servo motors, servo drives, CNC systems, linear motion, gearboxes, PLC, HMI and accessories." />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#09548D',
+            'primary-dark': '#0A4C82',
+            'brand-gray': '#858B92',
+            'brand-light': '#B2C2CF',
+            'brand-bg': '#F8FAFC',
+          },
+          fontFamily: { outfit: ['Outfit', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+    <!-- ===== EXTERNAL CSS ===== -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- ===== PRELOAD KEY ASSETS ===== -->
+  <link rel="preload" href="images/logo.png" as="image" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════ -->
+<header>
+    <nav id="navbar" aria-label="Main navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <a href="/index.html" class="flex items-center gap-2.5 flex-shrink-0" aria-label="Quantrix India home">
+          <img src="images/logo.png" alt="Quantrix India Private Limited – Industrial Automation" class="w-[150px]"
+            width="150" height="50" />
+        </a>
+
+        <div class="hidden md:flex items-center gap-7">
+          <a href="index.html" class="nav-link" aria-current="page">Home</a>
+          <a href="product.html" class="nav-link">Products</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="#cta" class="btn-quote hidden sm:inline-flex">Get Quote</a>
+          <button class="mobile-menu-btn md:hidden text-white" onclick="toggleMobileMenu()" aria-label="Open menu">
+            <span class="material-symbols-rounded" style="font-size:26px">menu</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-overlay" onclick="toggleMobileMenu()"
+      style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:150;" aria-hidden="true"></div>
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="flex items-center justify-between mb-6">
+        <span class="font-bold text-primary text-sm">Quantrix India</span>
+        <button onclick="toggleMobileMenu()" class="text-gray-500" aria-label="Close menu"><span
+            class="material-symbols-rounded">close</span></button>
+      </div>
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="product.html" class="mobile-nav-link">Products</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <a href="#cta" class="btn-quote mt-6 w-full text-center" onclick="toggleMobileMenu()">Get Quote</a>
+    </div>
+  </header>
+
+  <main>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-glow glow-a"></div>
+  <div class="hero-glow glow-b"></div>
+  <div class="hero-inner">
+
+    <div class="hero-badge fade-up">
+      <span class="hero-badge-dot"></span>
+      Product Catalogue — 2025
+    </div>
+
+    <h1 class="hero-title fade-up d1">
+      Industrial Automation<br/>
+      <span class="line2">Product Range</span>
+    </h1>
+
+    <p class="hero-desc fade-up d2">
+      Precision-engineered motion control, CNC, and industrial automation products — built for
+      manufacturers who can't afford downtime.
+    </p>
+
+    <!-- Stat strip -->
+    <div class="hero-stats fade-up d3">
+      <div class="hero-stat">
+        <div class="hero-stat-num">16+</div>
+        <div class="hero-stat-label">Product Lines</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">Categories</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">500+</div>
+        <div class="hero-stat-label">Clients Served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">24×7</div>
+        <div class="hero-stat-label">Support</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SEARCH + FILTER BAR
+════════════════════════════════════════════════ -->
+<section class="filter-bar">
+  <div class="filter-bar-inner">
+
+    <!-- Search row -->
+    <div class="search-row">
+      <div class="search-box">
+        <span class="material-symbols-rounded">search</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search products, specs, categories…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="clear-btn" id="clearBtn" onclick="clearSearch()" aria-label="Clear search">
+          <span class="material-symbols-rounded" style="font-size:18px">close</span>
+        </button>
+      </div>
+
+      <!-- View toggle -->
+      <div class="view-toggle" role="group" aria-label="View mode">
+        <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Grid view" aria-pressed="true">
+          <span class="material-symbols-rounded">grid_view</span>
+        </button>
+        <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="List view" aria-pressed="false">
+          <span class="material-symbols-rounded">view_list</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category chips -->
+    <div class="chips-row" role="group" aria-label="Filter by category">
+      <button class="chip active" data-cat="all" onclick="setFilter(this,'all')">
+        <span class="material-symbols-rounded">apps</span> All Products
+      </button>
+      <button class="chip" data-cat="Motion Controllers" onclick="setFilter(this,'Motion Controllers')">
+        <span class="material-symbols-rounded">device_hub</span> Motion Controllers
+      </button>
+      <button class="chip" data-cat="Servo Motors" onclick="setFilter(this,'Servo Motors')">
+        <span class="material-symbols-rounded">electric_meter</span> Servo Motors
+      </button>
+      <button class="chip" data-cat="Servo Drives" onclick="setFilter(this,'Servo Drives')">
+        <span class="material-symbols-rounded">speed</span> Servo Drives
+      </button>
+      <button class="chip" data-cat="CNC Controllers" onclick="setFilter(this,'CNC Controllers')">
+        <span class="material-symbols-rounded">memory</span> CNC Controllers
+      </button>
+      <button class="chip" data-cat="Linear Motion" onclick="setFilter(this,'Linear Motion')">
+        <span class="material-symbols-rounded">straighten</span> Linear Motion
+      </button>
+      <button class="chip" data-cat="Gearboxes" onclick="setFilter(this,'Gearboxes')">
+        <span class="material-symbols-rounded">settings</span> Gearboxes
+      </button>
+      <button class="chip" data-cat="PLC & HMI" onclick="setFilter(this,'PLC & HMI')">
+        <span class="material-symbols-rounded">developer_board</span> PLC &amp; HMI
+      </button>
+      <button class="chip" data-cat="Automation Accessories" onclick="setFilter(this,'Automation Accessories')">
+        <span class="material-symbols-rounded">cable</span> Accessories
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PRODUCT GRID
+════════════════════════════════════════════════ -->
+<section class="content-wrap">
+
+  <!-- Results bar -->
+  <div class="results-bar">
+    <div class="results-count">
+      Showing <strong id="countDisplay">16</strong> products
+    </div>
+    <div class="results-tag" id="activeFilterTag"></div>
+  </div>
+
+  <!-- Grid -->
+  <div id="productGrid">
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 1: 4-Axis Motion Controller -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d1"
+         data-cat="Motion Controllers"
+         data-search="motion controller 4-axis synchronized ethercat positioning cnc automation multi-axis">
+      <div class="pcard-img">
+        <a href="product-details.html?product=4-Axis+Motion+Controller&cat=Motion+Controllers">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="4-Axis Motion Controller" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">device_hub</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Motion Controllers</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">4-Axis Motion Controller</div>
+        <div class="pcard-desc">High-performance multi-axis controller with EtherCAT fieldbus for synchronized positioning and industrial automation.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Axes</span><span class="spec-v">4-Axis Sync</span></div>
+          <div class="spec-line"><span class="spec-k">Fieldbus</span><span class="spec-v">EtherCAT</span></div>
+          <div class="spec-line"><span class="spec-k">I/O</span><span class="spec-v">24 DI / 16 DO</span></div>
+        </div>
+        <a href="product-details.html?product=4-Axis+Motion+Controller&cat=Motion+Controllers" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 2: 6-Axis Motion Controller -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d2"
+         data-cat="Motion Controllers"
+         data-search="motion controller 6-axis robot interpolation high speed pulse">
+      <div class="pcard-img">
+        <a href="product-details.html?product=6-Axis+Motion+Controller&cat=Motion+Controllers">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="6-Axis Motion Controller" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">hub</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Motion Controllers</div>
+        <div class="pcard-new-tag">NEW</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">6-Axis Motion Controller</div>
+        <div class="pcard-desc">Advanced 6-axis controller with high-speed pulse output and complex interpolation for robotic and multi-process automation.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Axes</span><span class="spec-v">6-Axis</span></div>
+          <div class="spec-line"><span class="spec-k">Pulse</span><span class="spec-v">4 MHz Max</span></div>
+          <div class="spec-line"><span class="spec-k">Cycle</span><span class="spec-v">125 μs</span></div>
+        </div>
+        <a href="product-details.html?product=6-Axis+Motion+Controller&cat=Motion+Controllers" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 3: AC Servo Motor -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d3"
+         data-cat="Servo Motors"
+         data-search="ac servo motor permanent magnet torque speed ip65 flange encoder">
+      <div class="pcard-img">
+        <a href="product-details.html?product=AC+Servo+Motor&cat=Servo+Motors">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="AC Servo Motor" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">electric_meter</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Servo Motors</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">AC Servo Motor</div>
+        <div class="pcard-desc">Permanent magnet AC servo motor delivering superior dynamic torque, speed accuracy, and positioning over the full range.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Power</span><span class="spec-v">0.1 – 22 kW</span></div>
+          <div class="spec-line"><span class="spec-k">Speed</span><span class="spec-v">3000 RPM</span></div>
+          <div class="spec-line"><span class="spec-k">Protection</span><span class="spec-v">IP65</span></div>
+        </div>
+        <a href="product-details.html?product=AC+Servo+Motor&cat=Servo+Motors" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 4: Direct Drive Servo Motor -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d4"
+         data-cat="Servo Motors"
+         data-search="direct drive servo motor low cogging torque high resolution hollow shaft">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Direct+Drive+Servo+Motor&cat=Servo+Motors">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="Direct Drive Servo Motor" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">rotate_right</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Servo Motors</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Direct Drive Servo Motor</div>
+        <div class="pcard-desc">Low-cogging torque direct drive motor with high-resolution feedback for ultra-precise rotary positioning applications.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Torque</span><span class="spec-v">Up to 250 N·m</span></div>
+          <div class="spec-line"><span class="spec-k">Encoder</span><span class="spec-v">23-bit Absolute</span></div>
+          <div class="spec-line"><span class="spec-k">Backlash</span><span class="spec-v">Zero</span></div>
+        </div>
+        <a href="product-details.html?product=Direct+Drive+Servo+Motor&cat=Servo+Motors" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 5: Digital Servo Drive -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d1"
+         data-cat="Servo Drives"
+         data-search="digital servo drive amplifier canopen ethercat current loop bandwidth">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Digital+Servo+Drive&cat=Servo+Drives">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="Digital Servo Drive" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">speed</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Servo Drives</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Digital Servo Drive</div>
+        <div class="pcard-desc">Advanced digital servo amplifier with integrated PLC function, wide power range, and CANopen / EtherCAT connectivity.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Output</span><span class="spec-v">200 W – 15 kW</span></div>
+          <div class="spec-line"><span class="spec-k">Voltage</span><span class="spec-v">220 V / 380 V</span></div>
+          <div class="spec-line"><span class="spec-k">Bus</span><span class="spec-v">CANopen / EtherCAT</span></div>
+        </div>
+        <a href="product-details.html?product=Digital+Servo+Drive&cat=Servo+Drives" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 6: CNC Controller System -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d2"
+         data-cat="CNC Controllers"
+         data-search="cnc controller routing milling engraving laser cutting g-code touch screen">
+      <div class="pcard-img">
+        <a href="product-details.html?product=CNC+Controller+System&cat=CNC+Controllers">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="CNC Controller System" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">memory</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">CNC Controllers</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">CNC Controller System</div>
+        <div class="pcard-desc">Reliable CNC controller for routing, milling, laser cutting and engraving with a 10.1" touch display and full G-Code support.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Axes</span><span class="spec-v">3 / 4 / 6 Axis</span></div>
+          <div class="spec-line"><span class="spec-k">Display</span><span class="spec-v">10.1" Touch</span></div>
+          <div class="spec-line"><span class="spec-k">Code</span><span class="spec-v">ISO G / M-Code</span></div>
+        </div>
+        <a href="product-details.html?product=CNC+Controller+System&cat=CNC+Controllers" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 7: Lathe CNC Controller -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d3"
+         data-cat="CNC Controllers"
+         data-search="lathe cnc controller turning grinding 2-axis facing boring">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Lathe+CNC+Controller&cat=CNC+Controllers">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="Lathe CNC Controller" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">precision_manufacturing</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">CNC Controllers</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Lathe CNC Controller</div>
+        <div class="pcard-desc">Dedicated 2/4-axis CNC turning controller for lathes with threading cycles, tool compensation and rigid tapping capability.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Axes</span><span class="spec-v">2 / 4 Axis</span></div>
+          <div class="spec-line"><span class="spec-k">Spindle</span><span class="spec-v">24,000 RPM Max</span></div>
+          <div class="spec-line"><span class="spec-k">Display</span><span class="spec-v">8" Colour TFT</span></div>
+        </div>
+        <a href="product-details.html?product=Lathe+CNC+Controller&cat=CNC+Controllers" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 8: Precision Linear Guideway -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d4"
+         data-cat="Linear Motion"
+         data-search="linear guideway rail precision carriage low friction guide block">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Precision+Linear+Guideway&cat=Linear+Motion">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="Precision Linear Guideway" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">straighten</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Linear Motion</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Precision Linear Guideway</div>
+        <div class="pcard-desc">High-precision linear guide rail and carriage system with preloaded balls for accurate, rigid, low-friction travel.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Width</span><span class="spec-v">15 – 55 mm</span></div>
+          <div class="spec-line"><span class="spec-k">Grade</span><span class="spec-v">H / P / SP</span></div>
+          <div class="spec-line"><span class="spec-k">Load</span><span class="spec-v">Up to 96 kN</span></div>
+        </div>
+        <a href="product-details.html?product=Precision+Linear+Guideway&cat=Linear+Motion" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 9: Precision Ball Screw -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d1"
+         data-cat="Linear Motion"
+         data-search="ball screw spindle actuator lead screw precision feed axis c3 c5">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Precision+Ball+Screw&cat=Linear+Motion">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="Precision Ball Screw" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">horizontal_rule</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Linear Motion</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Precision Ball Screw</div>
+        <div class="pcard-desc">High-efficiency C3/C5 precision ball screw assemblies converting rotary motion to accurate, repeatable linear displacement.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Diameter</span><span class="spec-v">16 – 80 mm</span></div>
+          <div class="spec-line"><span class="spec-k">Lead</span><span class="spec-v">2 – 40 mm</span></div>
+          <div class="spec-line"><span class="spec-k">Efficiency</span><span class="spec-v">≥ 90%</span></div>
+        </div>
+        <a href="product-details.html?product=Precision+Ball+Screw&cat=Linear+Motion" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 10: Planetary Gearbox -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d2"
+         data-cat="Gearboxes"
+         data-search="planetary gearbox servo gearhead backlash ratio reducer compact torque">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Planetary+Gearbox&cat=Gearboxes">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="Planetary Gearbox" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">settings</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Gearboxes</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Planetary Gearbox</div>
+        <div class="pcard-desc">Compact high-torque planetary gearbox with low backlash for precision servo applications and demanding industrial automation.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Ratio</span><span class="spec-v">3:1 – 512:1</span></div>
+          <div class="spec-line"><span class="spec-k">Backlash</span><span class="spec-v">≤ 3 arcmin</span></div>
+          <div class="spec-line"><span class="spec-k">Frame</span><span class="spec-v">42 – 180 mm</span></div>
+        </div>
+        <a href="product-details.html?product=Planetary+Gearbox&cat=Gearboxes" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 11: Right-Angle Gearbox -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d3"
+         data-cat="Gearboxes"
+         data-search="right angle gearbox bevel worm reducer 90 degree output">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Right-Angle+Gearbox&cat=Gearboxes">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="Right-Angle Gearbox" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">change_history</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Gearboxes</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Right-Angle Gearbox</div>
+        <div class="pcard-desc">90° output bevel planetary gearbox for space-constrained servo installations requiring perpendicular motion transfer.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Output</span><span class="spec-v">90° Bevel</span></div>
+          <div class="spec-line"><span class="spec-k">Ratio</span><span class="spec-v">3:1 – 100:1</span></div>
+          <div class="spec-line"><span class="spec-k">Efficiency</span><span class="spec-v">≥ 95%</span></div>
+        </div>
+        <a href="product-details.html?product=Right-Angle+Gearbox&cat=Gearboxes" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 12: Modular PLC -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d4"
+         data-cat="PLC & HMI"
+         data-search="plc programmable logic controller modular cpu iec 61131 modbus">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Modular+PLC&cat=PLC+%26+HMI">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="Modular PLC" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">developer_board</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">PLC &amp; HMI</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Modular PLC</div>
+        <div class="pcard-desc">Scalable modular PLC platform for intelligent process automation with IEC 61131-3 programming and multi-protocol communication.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">I/O</span><span class="spec-v">8 – 512 Points</span></div>
+          <div class="spec-line"><span class="spec-k">CPU</span><span class="spec-v">32-bit RISC</span></div>
+          <div class="spec-line"><span class="spec-k">Protocol</span><span class="spec-v">Modbus / PROFIBUS</span></div>
+        </div>
+        <a href="product-details.html?product=Modular+PLC&cat=PLC+%26+HMI" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 13: Industrial HMI Panel -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d1"
+         data-cat="PLC & HMI"
+         data-search="hmi touch screen industrial panel display human machine interface monitoring">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Industrial+HMI+Panel&cat=PLC+%26+HMI">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="Industrial HMI Panel" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">tablet_android</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">PLC &amp; HMI</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Industrial HMI Panel</div>
+        <div class="pcard-desc">Touch-screen operator panel for intuitive machine control, real-time monitoring and industrial data visualization.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Screen</span><span class="spec-v">7" – 21.5" TFT</span></div>
+          <div class="spec-line"><span class="spec-k">Resolution</span><span class="spec-v">1280 × 800</span></div>
+          <div class="spec-line"><span class="spec-k">Protection</span><span class="spec-v">IP65 Front</span></div>
+        </div>
+        <a href="product-details.html?product=Industrial+HMI+Panel&cat=PLC+%26+HMI" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 14: Industrial Sensor -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d2"
+         data-cat="Automation Accessories"
+         data-search="sensor inductive proximity capacitive photoelectric detection position feedback">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Industrial+Sensor&cat=Automation+Accessories">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="Industrial Sensor" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">sensors</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Accessories</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Industrial Sensor</div>
+        <div class="pcard-desc">Inductive, capacitive and photoelectric sensors for reliable position detection and automation feedback in all environments.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Types</span><span class="spec-v">Inductive / Photo</span></div>
+          <div class="spec-line"><span class="spec-k">Voltage</span><span class="spec-v">12 – 24V DC</span></div>
+          <div class="spec-line"><span class="spec-k">Protection</span><span class="spec-v">IP67</span></div>
+        </div>
+        <a href="product-details.html?product=Industrial+Sensor&cat=Automation+Accessories" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 15: Switching Power Supply -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d3"
+         data-cat="Automation Accessories"
+         data-search="switching power supply 24v dc din rail industrial psu regulated">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Switching+Power+Supply&cat=Automation+Accessories">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop&crop=center&auto=format" alt="Switching Power Supply" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">power</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Accessories</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Switching Power Supply</div>
+        <div class="pcard-desc">DIN rail industrial switching power supply with wide AC input range, stable DC output and comprehensive protection.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Output</span><span class="spec-v">24V / 48V DC</span></div>
+          <div class="spec-line"><span class="spec-k">Current</span><span class="spec-v">2A – 40A</span></div>
+          <div class="spec-line"><span class="spec-k">Efficiency</span><span class="spec-v">≥ 88%</span></div>
+        </div>
+        <a href="product-details.html?product=Switching+Power+Supply&cat=Automation+Accessories" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────── -->
+    <!-- PRODUCT 16: Servo & Encoder Cable -->
+    <!-- ─────────────────────────────────────── -->
+    <div class="pcard fade-up d4"
+         data-cat="Automation Accessories"
+         data-search="servo encoder cable high flex drag chain shielded motor power signal">
+      <div class="pcard-img">
+        <a href="product-details.html?product=Servo+%26+Encoder+Cable&cat=Automation+Accessories">
+          <div class="pcard-img-inner">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=center&auto=format" alt="Servo & Encoder Cable" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+            <div class="fallback-icon" style="display:none;"><span class="material-symbols-rounded">cable</span></div>
+          </div>
+        </a>
+        <div class="pcard-cat-tag">Accessories</div>
+        <div class="pcard-new-tag">NEW</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Servo &amp; Encoder Cable</div>
+        <div class="pcard-desc">High-flex double-shielded servo motor and encoder cables rated for 10 million+ cycles in continuous drag chain operation.</div>
+        <div class="pcard-specs">
+          <div class="spec-line"><span class="spec-k">Flex Life</span><span class="spec-v">10M+ Cycles</span></div>
+          <div class="spec-line"><span class="spec-k">Jacket</span><span class="spec-v">PUR Oil-Resistant</span></div>
+          <div class="spec-line"><span class="spec-k">Shield</span><span class="spec-v">Double (Al + TC)</span></div>
+        </div>
+        <a href="product-details.html?product=Servo+%26+Encoder+Cable&cat=Automation+Accessories" class="pcard-view-btn">
+          View Details <span class="material-symbols-rounded">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Empty state (hidden by default) -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">
+        <span class="material-symbols-rounded">search_off</span>
+      </div>
+      <div class="empty-title">No products match your search</div>
+      <div class="empty-desc">Try a different keyword or clear the current filter to browse all products.</div>
+      <button class="btn-reset" onclick="resetAll()">
+        <span class="material-symbols-rounded" style="font-size:18px">refresh</span>
+        Show All Products
+      </button>
+    </div>
+
+  </div><!-- /productGrid -->
+
+  <!-- Pagination -->
+  <div class="pagination" id="paginationRow">
+    <button class="pag-btn disabled" id="prevBtn" onclick="changePg(-1)">
+      <span class="material-symbols-rounded" style="font-size:18px">arrow_back_ios</span>
+    </button>
+    <button class="pag-btn active" id="pg1" onclick="goPg(1)">1</button>
+    <button class="pag-btn" id="pg2" onclick="goPg(2)">2</button>
+    <button class="pag-btn" id="pg3" onclick="goPg(3)">3</button>
+    <span class="pag-dots">…</span>
+    <button class="pag-btn" id="pg8" onclick="goPg(8)">8</button>
+    <button class="pag-btn" id="nextBtn" onclick="changePg(1)">
+      <span class="material-symbols-rounded" style="font-size:18px">arrow_forward_ios</span>
+    </button>
+  </div>
+
+  <!-- ── CTA Strip ── -->
+  <div class="cta-strip">
+    <div class="cta-glow cta-g1"></div>
+    <div class="cta-glow cta-g2"></div>
+    <div class="cta-inner">
+      <div>
+        <div class="cta-text-title">Can't find what you need?<br/>Let our engineers help.</div>
+        <div class="cta-text-sub">Share your machine specifications and production requirements — we'll recommend the right automation solution and provide a detailed quotation within 24 hours.</div>
+      </div>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-cta-white">
+          <span class="material-symbols-rounded" style="font-size:18px;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20">request_quote</span>
+          Request a Quote
+        </a>
+        <a href="contact.html" class="btn-cta-ghost">
+          <span class="material-symbols-rounded" style="font-size:18px">support_agent</span>
+          Talk to an Engineer
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section><!-- /content-wrap -->
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+  <footer id="contact" style="background:#0a1628;" aria-labelledby="footer-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-2.5 mb-4">
+            <img src="images/logo.png" alt="Quantrix India Private Limited" class="w-[150px]" width="150" height="50" />
+          </div>
+          <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.75;margin-bottom:1.25rem;">Advanced
+            industrial automation solutions — motion control, CNC systems, servo technology, and components for modern
+            manufacturers.</p>
+          <div class="flex gap-2.5">
+            <a href="#" class="social-btn" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M20.45 20.45h-3.6V14.9c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.47-2.17 2.98v5.64H9.22V9h3.45v1.56h.05c.48-.91 1.65-1.87 3.4-1.87 3.64 0 4.31 2.39 4.31 5.5v6.26zM5.34 7.43a2.09 2.09 0 110-4.18 2.09 2.09 0 010 4.18zm1.8 13.02H3.53V9h3.61v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <a href="/" class="footer-link">Home</a>
+          <a href="#products" class="footer-link">Products</a>
+          <a href="#why" class="footer-link">Why Quantrix</a>
+          <a href="#process" class="footer-link">Our Process</a>
+          <a href="#cta" class="footer-link">Get Quote</a>
+        </div>
+
+        <div>
+          <div class="footer-heading">Contact Us</div>
+          <div class="flex items-start gap-2.5 mb-3"><span class="material-symbols-rounded text-primary mt-0.5"
+              style="font-size:18px;flex-shrink:0;">mail</span><a href="mailto:info@quantrixindia.com"
+              class="text-white/55 text-sm hover:text-sky-300 transition-colors">info@quantrixindia.com</a></div>
+          <div class="flex items-start gap-2.5 mb-3"><span class="material-symbols-rounded text-primary mt-0.5"
+              style="font-size:18px;flex-shrink:0;">call</span><a href="tel:+91XXXXXXXXXX"
+              class="text-white/55 text-sm hover:text-sky-300 transition-colors">+91 XXXXX XXXXX</a></div>
+          <div class="flex items-start gap-2.5"><span class="material-symbols-rounded text-primary mt-0.5"
+              style="font-size:18px;flex-shrink:0;">location_on</span><span
+              class="text-white/55 text-sm leading-relaxed">Quantrix India Private Limited,<br />Your City, State — PIN
+              Code, India</span></div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Stay Updated</div>
+          <p class="text-white/45 text-sm leading-relaxed mb-4">Get the latest product updates and automation insights.
+          </p>
+          <div class="flex gap-2"><input type="email" placeholder="Your email address" class="newsletter-input"
+              aria-label="Email address" /></div>
+          <button class="newsletter-btn mt-2 w-full">Subscribe</button>
+        </div>
+      </div>
+
+      <hr class="footer-divider mb-6" />
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm"
+        style="color:rgba(255,255,255,0.35);">
+        <div>© 2025 Quantrix India Private Limited. All rights reserved.</div>
+        <div class="flex gap-4"><a href="#" class="hover:text-white/60 transition-colors">Privacy Policy</a><a href="#"
+            class="hover:text-white/60 transition-colors">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
+<script src="js/index.js"></script>
+
+</body>
+</html>

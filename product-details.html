@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>AC Servo Motor — Quantrix India Private Limited</title>
+  <meta name="description" content="Quantrix India AC Servo Motor — High-precision permanent magnet servo motor delivering superior torque, speed accuracy and positioning for demanding industrial automation." />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#09548D',
+            'primary-dark': '#0A4C82',
+            'brand-gray': '#858B92',
+            'brand-light': '#B2C2CF',
+            'brand-bg': '#F8FAFC',
+          },
+          fontFamily: { outfit: ['Outfit', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts + Material Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- ===== EXTERNAL CSS (style.css from index) ===== -->
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <link rel="preload" href="images/logo.png" as="image" />
+
+  <style>
+    /* minimal additional styling for gallery / tabs — kept to a bare minimum, using index classes where possible */
+    .thumb {
+      border-color: #e8eff5;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .thumb:hover {
+      border-color: #09548d;
+      transform: translateY(-2px);
+    }
+    .thumb.active {
+      border-color: #09548d;
+      box-shadow: 0 4px 16px rgba(9, 84, 141, 0.2);
+    }
+    .thumb.active::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: rgba(9, 84, 141, 0.06);
+    }
+    .gallery-main.zoomed .gallery-main-img {
+      transform: scale(1.6);
+      cursor: zoom-out;
+    }
+    .tab-btn {
+      font-family: 'Outfit', sans-serif;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 0.875rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #858b92;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .tab-btn:hover { color: #09548d; }
+    .tab-btn.active {
+      color: #09548d;
+      border-bottom-color: #09548d;
+      background: rgba(9, 84, 141, 0.04);
+    }
+    .tab-panel { display: none; animation: fadeSlide 0.4s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+    .toast {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  </style>
+</head>
+<body class="font-outfit bg-brand-bg text-[#1a2332] overflow-x-hidden">
+
+<!-- TOAST -->
+<div class="toast fixed bottom-6 right-6 z-[999] bg-[#1a2332] text-white text-sm font-medium px-6 py-3.5 rounded-xl shadow-lg flex items-center gap-2" id="toast">
+  <span class="material-symbols-rounded icon-fill text-emerald-400 text-lg">check_circle</span>
+  <span id="toastMsg">Link copied!</span>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     NAVBAR (Same as index.html)
+══════════════════════════════════════════════ -->
+<header>
+  <nav id="navbar" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0" aria-label="Quantrix India home">
+        <img src="images/logo.png" alt="Quantrix India Private Limited – Industrial Automation" class="w-[150px]" width="150" height="50" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="product.html" class="nav-link active">Products</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="contact.html" class="btn-quote hidden sm:inline-flex">Get Quote</a>
+        <button class="mobile-menu-btn md:hidden text-white" onclick="toggleMobileMenu()" aria-label="Open menu">
+          <span class="material-symbols-rounded" style="font-size:26px">menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-overlay" onclick="toggleMobileMenu()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:150;" aria-hidden="true"></div>
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="flex items-center justify-between mb-6">
+      <span class="font-bold text-primary text-sm">Quantrix India</span>
+      <button onclick="toggleMobileMenu()" class="text-gray-500" aria-label="Close menu">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+    </div>
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="product.html" class="mobile-nav-link">Products</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+    <a href="contact.html" class="btn-quote mt-6 w-full text-center" onclick="toggleMobileMenu()">Get Quote</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════════
+     PRODUCT HERO — using index hero classes
+══════════════════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-title" class="relative overflow-hidden bg-gradient-to-br from-[#0A1F3A] via-[#0B2B4A] to-[#0C3B5E]">
+  <!-- overlay & glow (same as index) -->
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full py-16 md:py-20 flex items-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+
+      <!-- left text content — using index hero classes -->
+      <div class="text-left">
+        <div class="badge mb-6 fade-up">
+          <span class="badge-dot"></span>
+          Industrial Automation · Servo Motors
+        </div>
+        <h1 id="hero-title" class="hero-heading mb-6 fade-up stagger-1">
+          AC Servo Motor.<br />
+          <span class="accent">Precision</span> Redefined.<br />
+          Reliable Power.
+        </h1>
+        <p class="text-white/75 text-base sm:text-lg leading-relaxed mb-8 max-w-xl fade-up stagger-2">
+          High-performance permanent magnet AC servo motor engineered for superior torque density, speed accuracy, and positioning — trusted by manufacturers across CNC, robotics, and automation.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mb-12 fade-up stagger-3">
+          <a href="#cta" class="btn-primary-hero">
+            <span class="material-symbols-rounded text-base" aria-hidden="true">inventory_2</span>
+            Enquire Now
+          </a>
+          <a href="#specs" class="btn-secondary-hero">
+            <span class="material-symbols-rounded text-base" aria-hidden="true">list_alt</span>
+            View Specs
+          </a>
+        </div>
+
+        <!-- Stats (same as index) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 fade-up stagger-4">
+          <div class="stat-card">
+            <div class="stat-num">22 kW</div>
+            <div class="stat-label">Max Power</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">3000</div>
+            <div class="stat-label">Rated RPM</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">IP65</div>
+            <div class="stat-label">Protection</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">12 Mo.</div>
+            <div class="stat-label">Warranty</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right illustration — using same hero-illustration from index -->
+      <div class="hero-illustration fade-in stagger-2" aria-hidden="true">
+        <div class="hero-illustration-inner">
+          <div class="orbit-ring orbit-ring-1"></div>
+          <div class="orbit-ring orbit-ring-2"></div>
+          <div class="orbit-ring orbit-ring-3"></div>
+          <div class="center-core"><span class="material-symbols-rounded">electric_meter</span></div>
+          <div class="orbit-node n1"><span class="material-symbols-rounded">memory</span></div>
+          <div class="orbit-node n2"><span class="material-symbols-rounded">settings_motion_mode</span></div>
+          <div class="orbit-node n3"><span class="material-symbols-rounded">device_hub</span></div>
+          <div class="orbit-node n4"><span class="material-symbols-rounded">straighten</span></div>
+          <div class="orbit-node n5"><span class="material-symbols-rounded">speed</span></div>
+          <div class="orbit-node n6"><span class="material-symbols-rounded">developer_board</span></div>
+          <div class="float-badge float-badge-1"><span class="material-symbols-rounded text-xs mr-1" aria-hidden="true">check_circle</span> ISO 9001:2015</div>
+          <div class="float-badge float-badge-2"><span class="material-symbols-rounded text-xs mr-1" aria-hidden="true">bolt</span> >95% Efficiency</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     PRODUCT SHOWCASE (gallery + details)
+══════════════════════════════════════════════ -->
+  <section class="pt-10 pb-10 lg:pt-12 lg:pb-14 bg-brand-bg" aria-labelledby="product-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14">
+
+        <!-- ── LEFT: Gallery ── -->
+        <div class="lg:col-span-5 xl:col-span-5">
+          <h1 id="product-heading" class="sr-only">AC Servo Motor product gallery and details</h1>
+          <div class="gallery-main rounded-2xl border border-[#E8EFF5] overflow-hidden relative aspect-[4/3] bg-[#EEF5FB] cursor-zoom-in w-full" id="galleryMain">
+            <img id="mainImg" src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80" alt="AC Servo Motor — Quantrix India front view" class="gallery-main-img w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" loading="eager" />
+            <div class="gallery-badge absolute top-3 left-3 bg-primary/90 text-white text-[0.65rem] font-bold tracking-[0.08em] uppercase px-3 py-1 rounded-full backdrop-blur-sm">Servo Motors</div>
+            <div class="gallery-zoom-hint absolute bottom-2.5 right-2.5 bg-white/85 backdrop-blur-md rounded-lg px-2.5 py-1.5 text-[0.68rem] text-brand-gray flex items-center gap-1" aria-hidden="true">
+              <span class="material-symbols-rounded text-sm">zoom_in</span>Hover to zoom
+            </div>
+          </div>
+
+          <!-- Thumbnails -->
+          <div class="thumb-strip flex gap-2.5 mt-3" role="list" aria-label="Product image thumbnails">
+            <div class="thumb flex-1 aspect-square rounded-xl border-2 overflow-hidden cursor-pointer transition-all relative active" role="listitem" onclick="switchImg(this,'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80')" title="Front View">
+              <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=200&q=70" alt="Front View" class="w-full h-full object-cover transition-transform duration-300" loading="lazy" />
+            </div>
+            <div class="thumb flex-1 aspect-square rounded-xl border-2 overflow-hidden cursor-pointer transition-all relative" role="listitem" onclick="switchImg(this,'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80')" title="Application">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&q=70" alt="Application" class="w-full h-full object-cover transition-transform duration-300" loading="lazy" />
+            </div>
+            <div class="thumb flex-1 aspect-square rounded-xl border-2 overflow-hidden cursor-pointer transition-all relative" role="listitem" onclick="switchImg(this,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80')" title="PCB Detail">
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&q=70" alt="PCB Detail" class="w-full h-full object-cover transition-transform duration-300" loading="lazy" />
+            </div>
+            <div class="thumb flex-1 aspect-square rounded-xl border-2 overflow-hidden cursor-pointer transition-all relative" role="listitem" onclick="switchImg(this,'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80')" title="Robot Arm">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=200&q=70" alt="Robot Arm" class="w-full h-full object-cover transition-transform duration-300" loading="lazy" />
+            </div>
+            <div class="thumb flex-1 aspect-square rounded-xl border-2 overflow-hidden cursor-pointer transition-all relative" role="listitem" onclick="switchImg(this,'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80')" title="Industrial">
+              <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=200&q=70" alt="Industrial" class="w-full h-full object-cover transition-transform duration-300" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Quick spec pills -->
+          <div class="qspec-grid grid grid-cols-2 gap-2.5 mt-5">
+            <div class="qspec-pill bg-[#F8FAFC] border border-[#E8EFF5] rounded-xl px-4 py-3 hover:border-primary/20 hover:bg-primary/5 transition-all"><div class="qspec-val text-lg font-extrabold text-primary leading-none">22 kW</div><div class="qspec-key text-[0.68rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Max Power</div></div>
+            <div class="qspec-pill bg-[#F8FAFC] border border-[#E8EFF5] rounded-xl px-4 py-3 hover:border-primary/20 hover:bg-primary/5 transition-all"><div class="qspec-val text-lg font-extrabold text-primary leading-none">3000 RPM</div><div class="qspec-key text-[0.68rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Rated Speed</div></div>
+            <div class="qspec-pill bg-[#F8FAFC] border border-[#E8EFF5] rounded-xl px-4 py-3 hover:border-primary/20 hover:bg-primary/5 transition-all"><div class="qspec-val text-lg font-extrabold text-primary leading-none">IP65</div><div class="qspec-key text-[0.68rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Protection</div></div>
+            <div class="qspec-pill bg-[#F8FAFC] border border-[#E8EFF5] rounded-xl px-4 py-3 hover:border-primary/20 hover:bg-primary/5 transition-all"><div class="qspec-val text-lg font-extrabold text-primary leading-none">12 Mo.</div><div class="qspec-key text-[0.68rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Warranty</div></div>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: Product Info ── -->
+        <div class="lg:col-span-7 xl:col-span-7">
+          <div class="grid grid-cols-1 xl:grid-cols-1 gap-8 items-start">
+
+            <!-- Product info -->
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                <div class="cat-badge inline-flex items-center gap-1.5 bg-primary/10 text-primary text-[0.72rem] font-bold tracking-[0.06em] uppercase px-3.5 py-1.5 rounded-full border border-primary/20"><span class="material-symbols-rounded text-sm">electric_meter</span>Servo Motors</div>
+                <div class="avail-badge inline-flex items-center gap-1.5 bg-emerald-50/90 text-emerald-700 text-[0.72rem] font-bold px-3 py-1.5 rounded-full border border-emerald-200/50"><div class="avail-dot w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>In Stock · Industrial Grade</div>
+              </div>
+
+              <h2 class="product-title text-[clamp(1.625rem,3.5vw,2.375rem)] font-extrabold text-[#0d1e30] tracking-tight leading-[1.1] mb-3">AC Servo Motor</h2>
+              <p class="text-brand-gray leading-relaxed mb-6 text-[0.95rem]">
+                High-precision permanent magnet AC servo motor delivering superior dynamic torque, speed accuracy, and positioning performance for demanding industrial automation applications.
+              </p>
+
+              <!-- Highlights -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-7">
+                <div class="highlight-row flex items-center gap-1.5 text-sm text-[#374151] font-medium"><span class="material-symbols-rounded text-lg text-primary icon-fill">check_circle</span>High Precision Positioning</div>
+                <div class="highlight-row flex items-center gap-1.5 text-sm text-[#374151] font-medium"><span class="material-symbols-rounded text-lg text-primary icon-fill">check_circle</span>Energy Efficient Design</div>
+                <div class="highlight-row flex items-center gap-1.5 text-sm text-[#374151] font-medium"><span class="material-symbols-rounded text-lg text-primary icon-fill">check_circle</span>Superior Torque Density</div>
+                <div class="highlight-row flex items-center gap-1.5 text-sm text-[#374151] font-medium"><span class="material-symbols-rounded text-lg text-primary icon-fill">check_circle</span>Long Service Life</div>
+                <div class="highlight-row flex items-center gap-1.5 text-sm text-[#374151] font-medium"><span class="material-symbols-rounded text-lg text-primary icon-fill">check_circle</span>Low Noise & Vibration</div>
+                <div class="highlight-row flex items-center gap-1.5 text-sm text-[#374151] font-medium"><span class="material-symbols-rounded text-lg text-primary icon-fill">check_circle</span>CE / RoHS Certified</div>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                <a href="contact.html?product=AC+Servo+Motor" class="btn-enquire flex-1 relative overflow-hidden flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-br from-primary to-[#0d6aad] text-white font-bold text-[0.95rem] rounded-xl border-none cursor-pointer font-outfit transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40">
+                  <span class="material-symbols-rounded icon-fill text-xl">mail</span>
+                  Enquire Now
+                </a>
+                <button class="btn-secondary flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-primary font-semibold text-sm rounded-xl border-2 border-[#E8EFF5] hover:border-primary hover:bg-primary/5 transition-all" onclick="shareProduct()" title="Share product link">
+                  <span class="material-symbols-rounded text-xl">share</span>
+                  Share
+                </button>
+              </div>
+
+              <!-- Trust signals -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl border border-gray-100 bg-white">
+                <div class="trust-row flex items-center gap-1.5 text-[0.78rem] text-brand-gray"><span class="material-symbols-rounded text-base text-primary icon-fill">support_agent</span>Expert Support</div>
+                <div class="trust-row flex items-center gap-1.5 text-[0.78rem] text-brand-gray"><span class="material-symbols-rounded text-base text-primary icon-fill">local_shipping</span>Fast Delivery</div>
+                <div class="trust-row flex items-center gap-1.5 text-[0.78rem] text-brand-gray"><span class="material-symbols-rounded text-base text-primary icon-fill">verified</span>Genuine Products</div>
+                <div class="trust-row flex items-center gap-1.5 text-[0.78rem] text-brand-gray"><span class="material-symbols-rounded text-base text-primary icon-fill">schedule</span>24-hr Response</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /RIGHT -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       TABS — Overview · Specifications
+  ══════════════════════════════════════════════ -->
+  <section class="pb-14 lg:pb-20 bg-brand-bg" aria-label="Product details tabs" id="specs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+
+        <!-- Tab navigation -->
+        <div class="tabs-nav flex border-b border-[#E8EFF5] px-2 overflow-x-auto" role="tablist" aria-label="Product information tabs">
+          <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-overview" onclick="switchTab('overview',this)">
+            <span class="material-symbols-rounded">description</span>Overview
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-specs" onclick="switchTab('specs',this)">
+            <span class="material-symbols-rounded">list_alt</span>Specifications
+          </button>
+        </div>
+
+        <!-- ─── Overview ─── -->
+        <div class="tab-panel active p-6 lg:p-8" id="tab-overview" role="tabpanel">
+          <h2 class="sec-heading text-[clamp(1.5rem,3vw,2.125rem)] font-extrabold text-[#0d1e30] tracking-tight leading-[1.15] mb-4">Product Overview</h2>
+          <div class="prose-body text-[0.9rem] text-[#4B5563] leading-[1.85]">
+            <p class="mb-4">The Quantrix AC Servo Motor series is engineered to deliver exceptional dynamic performance across a wide range of industrial automation applications. Utilising high-energy permanent magnet technology and precision-wound stator coils, these motors achieve outstanding torque density, minimal cogging, and accurate speed regulation from standstill to maximum rated speed.</p>
+            <p class="mb-4">Designed for continuous industrial duty, each motor in the series incorporates built-in thermal protection, a low-cogging torque rotor design, and full compatibility with leading servo drive platforms including CANopen and EtherCAT fieldbus architectures. The sealed IP65 housing withstands exposure to coolant mist, dust, and machining debris found in real-world factory environments.</p>
+            <p class="mb-4">Available from 0.1 kW to 22 kW across multiple frame sizes (42 mm to 180 mm), the series is drop-in compatible with standard IEC flange interfaces. Encoder options include 2,500 PPR incremental and 17-bit / 23-bit absolute encoders, providing the resolution required for both general-purpose and ultra-precision applications.</p>
+            <p class="mb-0">Quantrix servo motors are trusted by manufacturers in CNC machining, robotics, laser cutting, packaging automation, textile machinery, and semiconductor equipment — wherever precision, reliability, and long operational life are non-negotiable.</p>
+          </div>
+
+          <!-- Stats strip inside overview -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gray-100">
+            <div class="text-center">
+              <div class="text-[1.75rem] font-extrabold text-primary">±0.001°</div>
+              <div class="text-[0.72rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Positioning Accuracy</div>
+            </div>
+            <div class="text-center">
+              <div class="text-[1.75rem] font-extrabold text-primary">3000</div>
+              <div class="text-[0.72rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Max RPM</div>
+            </div>
+            <div class="text-center">
+              <div class="text-[1.75rem] font-extrabold text-primary">IP65</div>
+              <div class="text-[0.72rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Protection Class</div>
+            </div>
+            <div class="text-center">
+              <div class="text-[1.75rem] font-extrabold text-primary">12 Mo.</div>
+              <div class="text-[0.72rem] text-brand-light font-medium mt-0.5 uppercase tracking-[0.05em]">Warranty</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── Specifications ─── -->
+        <div class="tab-panel p-6 lg:p-8" id="tab-specs" role="tabpanel">
+          <h2 class="sec-heading text-[clamp(1.5rem,3vw,2.125rem)] font-extrabold text-[#0d1e30] tracking-tight leading-[1.15] mb-6">Technical Specifications</h2>
+          <div class="rounded-xl overflow-hidden border border-gray-100">
+            <table class="spec-table w-full border-collapse">
+              <caption class="sr-only">Detailed technical specifications for AC Servo Motor</caption>
+              <thead>
+                <tr>
+                  <th class="px-5 py-3 text-[0.72rem] font-extrabold uppercase tracking-[0.08em] text-primary bg-primary/5 text-left">Parameter</th>
+                  <th class="px-5 py-3 text-[0.72rem] font-extrabold uppercase tracking-[0.08em] text-primary bg-primary/5 text-left">Value / Range</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Rated Voltage</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">220V AC / 380V AC (±10%)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Power Range</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">0.1 kW – 22 kW</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Rated Torque</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">0.32 N·m – 70 N·m</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Peak Torque</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">3× Rated Torque</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Rated Speed</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">2000 / 3000 RPM</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Maximum Speed</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">5000 RPM (model dependent)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Encoder (Standard)</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">2500 PPR Incremental</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Encoder (Optional)</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">17-bit / 23-bit Absolute</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Insulation Class</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">Class F (155°C)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Protection Class</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">IP65 (IP67 optional)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Mounting</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">Flange B5 / B14 (IEC Standard)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Cooling Method</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">Natural Air Cooling (IC40)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Ambient Temperature</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">0°C – 40°C (operating)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Storage Temperature</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">-20°C – +60°C</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Humidity</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">≤ 95% RH (non-condensing)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Vibration Resistance</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">2.5 G (10–60 Hz)</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Shaft Runout</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">≤ 0.02 mm</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Weight (typical)</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">0.5 kg – 35 kg</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Certification</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">CE / RoHS / ISO 9001:2015</td></tr>
+                <tr class="border-b border-[#F0F5FA] even:bg-primary/5 hover:bg-primary/10 transition-colors"><td class="px-5 py-3.5 text-sm text-brand-gray font-medium">Warranty</td><td class="px-5 py-3.5 text-sm text-[#1a2332] font-bold">12 Months</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-brand-light mt-4">* Specifications subject to change. Contact our engineering team for model-specific datasheets.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       CTA SECTION
+  ══════════════════════════════════════════════ -->
+  <section id="cta" class="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-br from-[#061828] via-[#083462] via-40% to-[#0c6aad] to-100%" aria-labelledby="cta-heading">
+    <div class="cta-glow absolute w-[500px] h-[500px] bg-[#0c6aad]/30 rounded-full blur-[80px] -top-[120px] -right-[60px] pointer-events-none"></div>
+    <div class="cta-glow absolute w-[320px] h-[320px] bg-primary/20 rounded-full blur-[80px] -bottom-[80px] left-[8%] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-[0.72rem] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full mb-6">
+        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+        Expert Assistance Available
+      </div>
+      <h2 id="cta-heading" class="text-[clamp(1.875rem,4vw,3rem)] font-extrabold text-white tracking-tight leading-[1.1] mb-4">
+        Need Expert Assistance?
+      </h2>
+      <p class="text-white/70 text-base leading-relaxed max-w-[560px] mx-auto mb-9">
+        Our technical engineers are ready to help you select the right servo motor, configure your drive system, and ensure smooth integration into your machine.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="contact.html?product=AC+Servo+Motor" class="inline-flex items-center gap-2 bg-white text-primary font-bold text-[0.9rem] px-7 py-3.5 rounded-full hover:-translate-y-0.5 hover:shadow-xl transition-all">
+          <span class="material-symbols-rounded icon-fill text-xl">mail</span>
+          Enquire Now
+        </a>
+        <a href="contact.html" class="inline-flex items-center gap-2 bg-white/10 border-2 border-white/30 text-white font-semibold text-[0.9rem] px-7 py-3.5 rounded-full backdrop-blur-md hover:bg-white/20 hover:-translate-y-0.5 transition-all">
+          <span class="material-symbols-rounded text-xl">support_agent</span>
+          Contact Our Team
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER (Same as index.html)
+══════════════════════════════════════════════ -->
+<footer id="footer" style="background:#0a1628;" aria-labelledby="footer-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="images/logo.png" alt="Quantrix India Private Limited" class="w-[150px]" width="150" height="50" />
+        </div>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.75;margin-bottom:1.25rem;">Advanced industrial automation solutions — motion control, CNC systems, servo technology, and components for modern manufacturers.</p>
+        <div class="flex gap-2.5">
+          <a href="#" class="social-btn" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.6V14.9c0-1.34-.03-3.07-1.87-3.07-1.88 0-2.17 1.47-2.17 2.98v5.64H9.22V9h3.45v1.56h.05c.48-.91 1.65-1.87 3.4-1.87 3.64 0 4.31 2.39 4.31 5.5v6.26zM5.34 7.43a2.09 2.09 0 110-4.18 2.09 2.09 0 010 4.18zm1.8 13.02H3.53V9h3.61v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z" /></svg></a>
+          <a href="#" class="social-btn" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
+          <a href="#" class="social-btn" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></a>
+          <a href="#" class="social-btn" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="product.html" class="footer-link">Products</a>
+        <a href="about.html" class="footer-link">About</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+        <a href="contact.html" class="footer-link">Get Quote</a>
+      </div>
+
+      <div>
+        <div class="footer-heading">Contact Us</div>
+        <div class="flex items-start gap-2.5 mb-3"><span class="material-symbols-rounded text-primary mt-0.5" style="font-size:18px;flex-shrink:0;">mail</span><a href="mailto:info@quantrixindia.com" class="text-white/55 text-sm hover:text-sky-300 transition-colors">info@quantrixindia.com</a></div>
+        <div class="flex items-start gap-2.5 mb-3"><span class="material-symbols-rounded text-primary mt-0.5" style="font-size:18px;flex-shrink:0;">call</span><a href="tel:+91XXXXXXXXXX" class="text-white/55 text-sm hover:text-sky-300 transition-colors">+91 XXXXX XXXXX</a></div>
+        <div class="flex items-start gap-2.5"><span class="material-symbols-rounded text-primary mt-0.5" style="font-size:18px;flex-shrink:0;">location_on</span><span class="text-white/55 text-sm leading-relaxed">Quantrix India Private Limited,<br />Your City, State — PIN Code, India</span></div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Stay Updated</div>
+        <p class="text-white/45 text-sm leading-relaxed mb-4">Get the latest product updates and automation insights.</p>
+        <div class="flex gap-2"><input type="email" placeholder="Your email address" class="newsletter-input" aria-label="Email address" /></div>
+        <button class="newsletter-btn mt-2 w-full">Subscribe</button>
+      </div>
+    </div>
+
+    <hr class="footer-divider mb-6" />
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm" style="color:rgba(255,255,255,0.35);">
+      <div>© 2025 Quantrix India Private Limited. All rights reserved.</div>
+      <div class="flex gap-4"><a href="#" class="hover:text-white/60 transition-colors">Privacy Policy</a><a href="#" class="hover:text-white/60 transition-colors">Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+  /* ── Navbar scroll effect ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  /* ── Mobile menu toggle ── */
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-overlay');
+    const isOpen = menu.style.display === 'block' || menu.classList.contains('open');
+    
+    if (isOpen) {
+      menu.classList.remove('open');
+      menu.style.display = 'none';
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    } else {
+      menu.classList.add('open');
+      menu.style.display = 'block';
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  /* ── Gallery thumbnail switching ── */
+  function switchImg(thumbEl, url) {
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    thumbEl.classList.add('active');
+    const mainImg = document.getElementById('mainImg');
+    mainImg.style.opacity = '0';
+    mainImg.style.transform = 'scale(0.97)';
+    setTimeout(() => {
+      mainImg.src = url;
+      mainImg.style.opacity = '1';
+      mainImg.style.transform = 'scale(1)';
+    }, 200);
+  }
+  document.getElementById('mainImg').style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+
+  /* ── Gallery zoom toggle ── */
+  const galleryMain = document.getElementById('galleryMain');
+  galleryMain.addEventListener('click', function() {
+    this.classList.toggle('zoomed');
+  });
+
+  /* ── Tab switching ── */
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('tab-' + id);
+    if (target) target.classList.add('active');
+  }
+
+  /* ── Share product ── */
+  function shareProduct() {
+    const url = window.location.href;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => showToast('Product link copied to clipboard!'));
+    } else {
+      showToast('Copy URL: ' + url);
+    }
+  }
+
+  /* ── Toast notification ── */
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  /* ── Fade-up observer ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    const fadeObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+  });
+</script>
+
+</body>
+</html>
