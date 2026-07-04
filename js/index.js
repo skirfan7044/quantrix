@@ -98,6 +98,95 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// ─── Product detail page interactions ───
+function switchProductImg(thumbEl, url) {
+  document.querySelectorAll('.thumb').forEach((thumb) => thumb.classList.remove('active'));
+  thumbEl.classList.add('active');
+
+  const mainImg = document.getElementById('mainImg');
+  if (!mainImg) return;
+
+  mainImg.style.opacity = '0';
+  mainImg.style.transform = 'scale(0.97)';
+
+  setTimeout(() => {
+    mainImg.src = url;
+    mainImg.style.opacity = '1';
+    mainImg.style.transform = 'scale(1)';
+  }, 200);
+}
+
+function switchProductTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach((tabBtn) => {
+    tabBtn.classList.remove('active');
+    tabBtn.setAttribute('aria-selected', 'false');
+  });
+
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+
+  document.querySelectorAll('.tab-panel').forEach((panel) => panel.classList.remove('active'));
+  const target = document.getElementById(`tab-${id}`);
+  if (target) target.classList.add('active');
+}
+
+function shareProduct() {
+  const url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => showToast('Product link copied to clipboard!'));
+  } else {
+    showToast(`Copy URL: ${url}`);
+  }
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 3200);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const mainImg = document.getElementById('mainImg');
+  if (mainImg) {
+    mainImg.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+  }
+
+  const galleryMain = document.getElementById('galleryMain');
+  if (galleryMain) {
+    galleryMain.addEventListener('click', function () {
+      this.classList.toggle('zoomed');
+    });
+  }
+
+  document.querySelectorAll('.thumb').forEach((thumb) => {
+    thumb.addEventListener('click', function () {
+      const url = this.getAttribute('data-full');
+      if (url) {
+        switchProductImg(this, url);
+      }
+    });
+  });
+
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const tabId = this.getAttribute('data-tab');
+      if (tabId) {
+        switchProductTab(tabId, this);
+      }
+    });
+  });
+
+  const shareBtn = document.getElementById('shareBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', shareProduct);
+  }
+});
+
 // ─── Scroll animations (Intersection Observer) ───
 const observer = new IntersectionObserver(
   (entries) => {
