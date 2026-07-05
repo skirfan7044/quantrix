@@ -84,7 +84,7 @@
     <nav id="navbar" aria-label="Main navigation">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2.5 flex-shrink-0" aria-label="Quantrix India home">
-          <img src="images/logo.png" alt="Quantrix India Private Limited – Industrial Automation" class="w-[150px]"
+          <img src="images/logo.png" alt="Quantrix India Private Limited – Industrial Automation" class="w-[100px] lg:w-[150px] bg-white rounded-lg"
             width="150" height="50" />
         </a>
 
@@ -123,7 +123,7 @@
   <main>
 
   <!-- ─── HERO ─── -->
-  <section class="hero relative mt-20 flex items-center overflow-hidden pt-20">
+  <section class="hero relative pt-[120px] lg:pt-[150px] flex items-center overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"%3E%3Crect fill="%230a1628"/%3E%3Ccircle cx="200" cy="200" r="300" fill="%2309548D" opacity="0.08"/%3E%3Ccircle cx="900" cy="600" r="400" fill="%2309548D" opacity="0.06"/%3E%3C/svg%3E')] bg-cover bg-center opacity-60"></div>
     
@@ -131,7 +131,7 @@
     <div class="hero-glow-1 absolute rounded-full blur-[120px] pointer-events-none w-[500px] h-[500px] bg-[rgba(42,125,225,0.12)] -top-[150px] -right-[100px]"></div>
     <div class="hero-glow-2 absolute rounded-full blur-[120px] pointer-events-none w-[400px] h-[400px] bg-[rgba(9,84,141,0.15)] -bottom-[100px] -left-[100px]"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full py-16 md:py-0 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
       <div class="max-w-3xl">
         <!-- Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium tracking-[0.5px] uppercase mb-6">
@@ -663,34 +663,28 @@
       </div>
     </section>
 
-    <!-- ─── CTA ─── -->
-    <section class="py-24 lg:py-32 bg-gradient-to-br from-[#0a1628] via-[#1a2f4a] to-[#0a1628] relative overflow-hidden">
-      <div class="absolute rounded-full blur-[120px] pointer-events-none w-[500px] h-[500px] bg-[rgba(42,125,225,0.1)] -top-[200px] -right-[200px]"></div>
-      <div class="absolute rounded-full blur-[120px] pointer-events-none w-[400px] h-[400px] bg-[rgba(9,84,141,0.12)] -bottom-[150px] -left-[150px]"></div>
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/20 text-white/90 text-[11px] font-semibold tracking-[0.5px] uppercase mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#2a7de1] inline-block"></span>
-          Let's Build Together
-        </div>
-        <h2 class="text-white font-black text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-5">
-          Let's Build Smarter<br />
-          Manufacturing Together
-        </h2>
-        <p class="text-white/70 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-          Whether you need motion control systems, CNC automation, servo technology, or complete industrial automation solutions, Quantrix India Private Limited is ready to help your business achieve greater precision and efficiency.
-        </p>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <a href="product.html" class="inline-flex items-center gap-2.5 px-8 py-3.5 bg-gradient-to-br from-[#2a7de1] to-[#1b5fb0] text-white rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_12px_48px_rgba(42,125,225,0.45)] shadow-[0_8px_32px_rgba(42,125,225,0.3)]">
-            <span class="material-symbols-rounded text-lg">inventory_2</span>
-            Explore Products
-          </a>
-          <a href="contact.html" class="inline-flex items-center gap-2.5 px-8 py-3.5 bg-white/5 text-white rounded-full font-semibold text-sm transition-all duration-300 hover:bg-white/15 hover:-translate-y-[3px] border border-white/15 backdrop-blur-sm">
-            <span class="material-symbols-rounded text-lg">call</span>
-            Contact Our Experts
-          </a>
-        </div>
+  <!-- ─── CTA ─── -->
+  <section id="cta" class="py-24 lg:py-32" aria-labelledby="cta-heading">
+    <div class="cta-glow cta-g1"></div>
+    <div class="cta-glow cta-g2"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="section-tag mb-6 fade-up"
+        style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);border-color:rgba(255,255,255,0.2);">
+        Upgrade Your Production</div>
+      <h2 id="cta-heading" class="text-white font-black mb-5 fade-up stagger-1"
+        style="font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-0.02em;">Ready to Upgrade
+        Your<br />Industrial Automation?</h2>
+      <p class="text-white/70 leading-relaxed mb-10 max-w-2xl mx-auto fade-up stagger-2" style="font-size:1.05rem;">
+        Partner with Quantrix India Private Limited for high-performance motion control, CNC systems, and industrial
+        automation solutions designed for the future of manufacturing.</p>
+      <div class="flex flex-wrap gap-4 justify-center fade-up stagger-3">
+        <a href="mailto:info@quantrixindia.com" class="btn-cta-primary"><span class="material-symbols-rounded text-lg"
+            aria-hidden="true">request_quote</span> Request a Quote</a>
+        <a href="contact.html" class="btn-cta-secondary"><span class="material-symbols-rounded text-lg"
+            aria-hidden="true">call</span> Contact Our Experts</a>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- ─── FOOTER ─── -->
     </main>
@@ -700,7 +694,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div class="lg:col-span-1">
             <div class="flex items-center gap-2.5 mb-4">
-              <img src="images/logo.png" alt="Quantrix India Private Limited" class="w-[150px]" width="150" height="50" />
+              <img src="images/logo.png" alt="Quantrix India Private Limited" class="w-[100px] lg:w-[150px] " />
             </div>
             <p class="about-footer-desc">Advanced
               industrial automation solutions — motion control, CNC systems, servo technology, and components for modern

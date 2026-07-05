@@ -224,6 +224,11 @@ document.querySelectorAll(
   '.btn-primary-hero, .btn-secondary-hero, .btn-cta-primary, .btn-cta-secondary'
 ).forEach((btn) => {
   btn.addEventListener('click', function(e) {
+    // Skip ripple for links (<a> tags) to allow normal navigation
+    if (this.tagName === 'A') {
+      return;
+    }
+
     const ripple = document.createElement('span');
     const rect = this.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
@@ -577,7 +582,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-
-// ─── Console log ───
-console.log('Quantrix India — Industrial Automation Solutions');
-console.log('🚀 Product catalogue loaded successfully');
