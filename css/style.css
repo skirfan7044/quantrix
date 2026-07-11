@@ -2236,6 +2236,9 @@ body {
   .hero-illustration {
     display: none;
   }
+  .filter-bar { 
+    top:70px
+  }
 }
 
 @media (min-width: 769px) {
